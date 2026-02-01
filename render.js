@@ -134,3 +134,22 @@ export function drawGame(ctx, canvas, state) {
     ctx.fillText("GAME OVER", canvas.width / 2 - 90, canvas.height / 2);
   }
 }
+
+export function drawWaiting(ctx, canvas) {
+  ctx.fillStyle = "#003300";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+  ctx.font = "28px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("接続待ち...", canvas.width / 2, canvas.height / 2);
+
+  ctx.font = "16px Arial";
+  ctx.fillText(
+    "相手が通信対戦を開始するのを待っています",
+    canvas.width / 2,
+    canvas.height / 2 + 40
+  );
+
+  ctx.textAlign = "left";
+}

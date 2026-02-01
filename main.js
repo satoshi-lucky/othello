@@ -1,4 +1,4 @@
-import { drawMenu, drawGame } from "./render.js";
+import { drawMenu, drawGame , drawWaiting } from "./render.js";
 import {
   board,
   SIZE,
@@ -24,6 +24,10 @@ let ws = null;
 let myColor = null;
 
 function startOnline() {
+  gameState = "waiting";
+  gameMode = "online";
+  myColor = null;
+  
   ws = new WebSocket("wss://othello-ws-server.onrender.com"); // ← 後でURL差し替え
 
   ws.onmessage = e => {
@@ -202,6 +206,8 @@ function loop() {
 
   if (gameState === "menu") {
     drawMenu(ctx, canvas);
+  } else if (gameState === "waiting"){
+    drawWaiting(ctx,canvas);
   } else {
     drawGame(ctx, canvas, {
       board,
